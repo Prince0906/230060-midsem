@@ -1,0 +1,94 @@
+"full_llm_interaction_log": [
+    {
+      "interaction_id": 1,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Evaluating CPU feasibility and time complexity tradeoffs",
+      "prompt": "Given the strict CPU-only constraint of my exam, what is the time complexity trade-off between increasing the number of GMM components (K) versus the dimensionality of the resulting Fisher Vector when training the linear SVM?",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Helped me understand that keeping K small (e.g., K=16 or 32) ensures the Fisher Vector length remains manageable for a CPU-based linear SVM.",
+      "student_verification": "Cross-referenced the dimensionality formula D = 2 * K * d from the paper to calculate exact feature sizes for my toy dataset.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 2,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Understanding mathematical intuition and model choices",
+      "prompt": "Why does the Fisher Vector inherently pair so well with a linear SVM instead of a complex RBF kernel SVM? Explain the mathematical intuition behind the gradient space mapping.",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Clarified that the Fisher Kernel itself is already a dot-product in a high-dimensional gradient space, making non-linear kernels redundant and computationally wasteful.",
+      "student_verification": "Checked the paper's section on the Fisher Kernel derivation which proves it is explicitly designed for linear classifiers.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 3,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Identifying failure modes and limitations for Part C preparation",
+      "prompt": "In the ECCV 2010 Fisher Kernel paper, how does the soft assignment of GMMs handle background clutter compared to standard Bag-of-Visual-Words (BoV), and what are its failure modes if the target object is severely occluded?",
+      "llm_response_used": "Partially",
+      "how_it_helped": "Revealed that while GMMs model the background well, severe occlusion still breaks the spatial layout assumption, acting as a major failure mode.",
+      "student_verification": "Compared the experimental results in the paper regarding occlusion sensitivity against standard BoV baselines.",
+      "confidence_level": 4
+    },
+    {
+      "interaction_id": 4,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Testing assumptions of the core classical algorithm",
+      "prompt": "What underlying statistical assumptions does the Gaussian Mixture Model make about the distribution of local image features (like SIFT or HOG), and when would these assumptions mathematically break down on a simplified toy dataset?",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Highlighted that GMMs assume features are drawn from a mixture of normal distributions, which might fail if the toy dataset is too small or highly uniform.",
+      "student_verification": "Verified via standard statistical textbooks that GMM EM algorithms converge poorly on non-Gaussian or highly sparse data distributions.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 5,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Checking implementation details to avoid deep learning requirements",
+      "prompt": "Does the computation of the Fisher Vector gradients require backpropagation, or is it a closed-form algebraic calculation that easily runs on a basic CPU using NumPy?",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Confirmed that unlike neural networks, Fisher Vectors use closed-form analytical gradients with respect to GMM means and variances.",
+      "student_verification": "Checked the explicit gradient formulas provided in the paper to ensure no automatic differentiation libraries (like PyTorch) are required.",
+      "confidence_level": 5
+    }
+  ],
+  "top_5_prompts": [
+    {
+      "rank": 1,
+      "interaction_id": 3,
+      "prompt": "In the ECCV 2010 Fisher Kernel paper, how does the soft assignment of GMMs handle background clutter compared to standard Bag-of-Visual-Words (BoV), and what are its failure modes if the target object is severely occluded?",
+      "why_important": "This prompt directly addresses the 'failure modes' grading criterion. Understanding how background clutter and occlusion break the model is essential for the proctored exam."
+    },
+    {
+      "rank": 2,
+      "interaction_id": 1,
+      "prompt": "Given the strict CPU-only constraint of my exam, what is the time complexity trade-off between increasing the number of GMM components (K) versus the dimensionality of the resulting Fisher Vector when training the linear SVM?",
+      "why_important": "Satisfies the 'trade-offs' and 'feasibility' criteria. It proves I actively verified that the methodology won't blow up the memory limits on my personal laptop."
+    },
+    {
+      "rank": 3,
+      "interaction_id": 2,
+      "prompt": "Why does the Fisher Vector inherently pair so well with a linear SVM instead of a complex RBF kernel SVM? Explain the mathematical intuition behind the gradient space mapping.",
+      "why_important": "Addresses the 'why' criterion by exploring the deep mathematical synergy between the generative GMM step and the discriminative linear SVM step."
+    },
+    {
+      "rank": 4,
+      "interaction_id": 4,
+      "prompt": "What underlying statistical assumptions does the Gaussian Mixture Model make about the distribution of local image features (like SIFT or HOG), and when would these assumptions mathematically break down on a simplified toy dataset?",
+      "why_important": "Tackles the 'when' criterion. It forced me to think about edge cases and the theoretical limits of the EM algorithm if my toy dataset lacks diversity."
+    },
+    {
+      "rank": 5,
+      "interaction_id": 5,
+      "prompt": "Does the computation of the Fisher Vector gradients require backpropagation, or is it a closed-form algebraic calculation that easily runs on a basic CPU using NumPy?",
+      "why_important": "Crucial for final feasibility confirmation. It guaranteed that I could implement this entirely with classical libraries like scikit-learn without secretly relying on modern deep learning frameworks."
+    }
+  ]
