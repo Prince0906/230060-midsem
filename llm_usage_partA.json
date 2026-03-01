@@ -1,4 +1,20 @@
-"full_llm_interaction_log": [
+{
+  "student_metadata": {
+    "name": "Prince Sahoo",
+    "roll_number": "230060",
+    "course": "Advanced Machine Learning",
+    "exam": "Mid-Semester Examination",
+    "part": "Part A",
+    "submission_date": "2026-03-01"
+  },
+  "llm_tools_used": [
+    {
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "provider": "Google"
+    }
+  ],
+  "full_llm_interaction_log": [
     {
       "interaction_id": 1,
       "date": "2026-03-01",
@@ -91,4 +107,11 @@
       "prompt": "Does the computation of the Fisher Vector gradients require backpropagation, or is it a closed-form algebraic calculation that easily runs on a basic CPU using NumPy?",
       "why_important": "Crucial for final feasibility confirmation. It guaranteed that I could implement this entirely with classical libraries like scikit-learn without secretly relying on modern deep learning frameworks."
     }
-  ]
+  ],
+  "student_declaration": {
+    "statement": "I declare that this JSON file contains a complete and honest record of my LLM usage for Part A.",
+    "understanding_acknowledged": true,
+    "signature": "Prince Sahoo",
+    "date": "2026-03-01"
+  }
+}
