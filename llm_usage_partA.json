@@ -20,11 +20,11 @@
       "date": "2026-03-01",
       "tool_name": "Gemini",
       "model": "Gemini",
-      "purpose": "Evaluating CPU feasibility and time complexity tradeoffs",
-      "prompt": "Given the strict CPU-only constraint of my exam, what is the time complexity trade-off between increasing the number of GMM components (K) versus the dimensionality of the resulting Fisher Vector when training the linear SVM?",
+      "purpose": "Foundational understanding of exam constraints.",
+      "prompt": "understand this pdf in depth and understand each context carefully because in future it will be very useful for doing it",
       "llm_response_used": "Yes",
-      "how_it_helped": "Helped me understand that keeping K small (e.g., K=16 or 32) ensures the Fisher Vector length remains manageable for a CPU-based linear SVM.",
-      "student_verification": "Cross-referenced the dimensionality formula D = 2 * K * d from the paper to calculate exact feature sizes for my toy dataset.",
+      "how_it_helped": "Summarized the venue (CORE A*), algorithm (GMM/SVM/ARIMA), and compute (CPU-only) rules.",
+      "student_verification": "I checked the first page of the PDF to make sure the AI correctly identified the 2009-2012 year range.",
       "confidence_level": 5
     },
     {
@@ -32,80 +32,260 @@
       "date": "2026-03-01",
       "tool_name": "Gemini",
       "model": "Gemini",
-      "purpose": "Understanding mathematical intuition and model choices",
-      "prompt": "Why does the Fisher Vector inherently pair so well with a linear SVM instead of a complex RBF kernel SVM? Explain the mathematical intuition behind the gradient space mapping.",
-      "llm_response_used": "Yes",
-      "how_it_helped": "Clarified that the Fisher Kernel itself is already a dot-product in a high-dimensional gradient space, making non-linear kernels redundant and computationally wasteful.",
-      "student_verification": "Checked the paper's section on the Fisher Kernel derivation which proves it is explicitly designed for linear classifiers.",
-      "confidence_level": 5
+      "purpose": "Brainstorming paper categories.",
+      "prompt": "help me brainstorm some eligible papers based on the topics specififed in pdf",
+      "llm_response_used": "Partially",
+      "how_it_helped": "Gave me ideas on mapping my interests in Computer Vision and Time-series to specific exam categories.",
+      "student_verification": "I verified in the PDF that Computer Vision (CVPR/ECCV) and Data Mining (KDD) were valid venues.",
+      "confidence_level": 4
     },
     {
       "interaction_id": 3,
       "date": "2026-03-01",
       "tool_name": "Gemini",
       "model": "Gemini",
-      "purpose": "Identifying failure modes and limitations for Part C preparation",
-      "prompt": "In the ECCV 2010 Fisher Kernel paper, how does the soft assignment of GMMs handle background clutter compared to standard Bag-of-Visual-Words (BoV), and what are its failure modes if the target object is severely occluded?",
-      "llm_response_used": "Partially",
-      "how_it_helped": "Revealed that while GMMs model the background well, severe occlusion still breaks the spatial layout assumption, acting as a major failure mode.",
-      "student_verification": "Compared the experimental results in the paper regarding occlusion sensitivity against standard BoV baselines.",
-      "confidence_level": 4
+      "purpose": "Searching for papers bridging required algorithms.",
+      "prompt": "find another ones , make sure it uses svm, gmm or time series together and it fulfills the needs specified in pdf",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Introduced the Fisher Kernel paper which utilizes GMM for encoding and SVM for classification.",
+      "student_verification": "I checked the paper's abstract online to confirm it explicitly uses both GMM and SVM.",
+      "confidence_level": 5
     },
     {
       "interaction_id": 4,
       "date": "2026-03-01",
       "tool_name": "Gemini",
       "model": "Gemini",
-      "purpose": "Testing assumptions of the core classical algorithm",
-      "prompt": "What underlying statistical assumptions does the Gaussian Mixture Model make about the distribution of local image features (like SIFT or HOG), and when would these assumptions mathematically break down on a simplified toy dataset?",
+      "purpose": "Assessing detail level of a specific path.",
+      "prompt": "options 2 details ",
       "llm_response_used": "Yes",
-      "how_it_helped": "Highlighted that GMMs assume features are drawn from a mixture of normal distributions, which might fail if the toy dataset is too small or highly uniform.",
-      "student_verification": "Verified via standard statistical textbooks that GMM EM algorithms converge poorly on non-Gaussian or highly sparse data distributions.",
-      "confidence_level": 5
+      "how_it_helped": "Explained the sliding window approach for SVR in time-series forecasting.",
+      "student_verification": "I recalled standard ML practices for time-series to verify the 'lag features' concept mentioned.",
+      "confidence_level": 4
     },
     {
       "interaction_id": 5,
       "date": "2026-03-01",
       "tool_name": "Gemini",
       "model": "Gemini",
-      "purpose": "Checking implementation details to avoid deep learning requirements",
-      "prompt": "Does the computation of the Fisher Vector gradients require backpropagation, or is it a closed-form algebraic calculation that easily runs on a basic CPU using NumPy?",
+      "purpose": "Validating the chosen Fisher Kernel paper against the 2-day timeline.",
+      "prompt": "does option a satisfy all criteria mentioned in pdf and it's dataset is easily available and we can perform on toy dataset and reproduce and understand in 2 days",
       "llm_response_used": "Yes",
-      "how_it_helped": "Confirmed that unlike neural networks, Fisher Vectors use closed-form analytical gradients with respect to GMM means and variances.",
-      "student_verification": "Checked the explicit gradient formulas provided in the paper to ensure no automatic differentiation libraries (like PyTorch) are required.",
+      "how_it_helped": "Confirmed the paper is CPU-friendly and suitable for toy dataset simplification as allowed by the exam rules.",
+      "student_verification": "I read the 'Reproducibility' section on page 2 of the PDF to confirm toy datasets are allowed.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 6,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Duplicate check against live responses.",
+      "prompt": "it does not match this right 3/1/2026 18:45:29Mehak JainTomoharu Iwata...",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Confirmed that the authors of my chosen paper were not on the list of already submitted entries.",
+      "student_verification": "I manually scanned the provided names in the spreadsheet to ensure no conflict.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 7,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Understanding core mechanics.",
+      "prompt": "what this paper actually does",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Explained the difference between Bag-of-Visual-Words and the Improved Fisher Vector encoding.",
+      "student_verification": "I looked at the pipeline diagram in the paper to verify the GMM-to-Gradient steps described.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 8,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Researching motivation.",
+      "prompt": "explain why this paper research work was done",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Highlighted the need for efficient large-scale classification using linear classifiers rather than slow non-linear ones.",
+      "student_verification": "I read the introduction of the ECCV paper to confirm the scalability goals matched the LLM's explanation.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 9,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Searching for alternative CV papers.",
+      "prompt": "find one more paper like this which is in year 2010 above ",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Suggested an ICML 2011 paper on SVM solution paths.",
+      "student_verification": "Checked the ICML 2011 website to confirm the venue was Core A* as required.",
+      "confidence_level": 4
+    },
+    {
+      "interaction_id": 10,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Broadening options.",
+      "prompt": "find one more",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Suggested a JMLR 2012 paper on large-scale Linear SVR.",
+      "student_verification": "I verified JMLR is on the 'Allowed Venues' list in the exam PDF.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 11,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Broadening options.",
+      "prompt": "find one more ",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Introduced the Pegasos SVM algorithm paper.",
+      "student_verification": "I checked the publication date to ensure it was within the 2009-2012 window.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 12,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Searching for simpler alternatives.",
+      "prompt": "I want more easy paper and make sure it is different from above ",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Suggested a Time-Series paper (DTW optimization) as a non-SVM alternative.",
+      "student_verification": "Confirmed that ARIMA/Time-series is one of the three main allowed categories on page 1.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 13,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Looking for implementation-friendly papers.",
+      "prompt": "give me one more paper which is easy to implement with my laptop and toy dataset",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Suggested a Multiple Kernel Learning paper from JMLR 2011.",
+      "student_verification": "Checked if Multiple Kernel Learning counts as an SVM variant, which it does.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 14,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Comparing papers to finalize the selection.",
+      "prompt": "compare Multiple Kernel Learning Algorithms with Pegasos: Primal Estimated sub-GrAdient SOlver for SVM and tell me which is more feasible ",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Compared implementation complexity and concluded that Pegasos is simpler to code but Fisher Kernel fits my vision projects better.",
+      "student_verification": "I weighed the coding time for GMM-SVM vs. SGD-SVM before sticking to my original choice.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 15,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Planning for future parts of the exam.",
+      "prompt": "what we wil do in part b if we chose this paper",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Outlined the reproduction and experimentation tasks I will face in Part B.",
+      "student_verification": "I read the 'Objective' section of the PDF which mentions reproduction in Part B.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 16,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Confirming venue eligibility.",
+      "prompt": "is the paper published or accepted in a CORE A* conference or journal (2009– 2012 editions).",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Verified that ECCV 2010 is ranked as a CORE A* venue.",
+      "student_verification": "I used the CORE portal link provided on page 1 to verify the A* ranking of ECCV.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 17,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Vetting the nature of the paper's contribution.",
+      "prompt": "is it satisfy this point : The primary contribution must be methodological or an application of the above algorithms. Papers whose main contribution is only a dataset, benchmark, or system are NOT allowed.",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Confirmed the paper's focus is on the encoding methodology, not just presenting a dataset.",
+      "student_verification": "I read the 'Nature of Contribution' rule in the PDF to ensure the AI's logic matched the professor's rules.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 18,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Clarifying exam terminology.",
+      "prompt": "i don't understand this point in pdf: At least one later exam question will involve inference",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Clarified that inference refers to the prediction stage, which is a key part of image classification.",
+      "student_verification": "I checked my class notes to confirm that 'inference' means making predictions on new data.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 19,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Final vetting against 'Red Flags'.",
+      "prompt": "is this paper satisfy this points also : • Licensed or restricted datasets • Missing hyperparameter or experimental details...",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Systematically checked the paper against the list of things to avoid on page 4 of the PDF.",
+      "student_verification": "I manually scanned the paper to make sure hyperparameters like K and alpha were clearly stated.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 20,
+      "date": "2026-03-01",
+      "tool_name": "Gemini",
+      "model": "Gemini",
+      "purpose": "Ensuring JSON format compliance.",
+      "prompt": "again read the json specified format in pdf, understand it in depth ",
+      "llm_response_used": "Yes",
+      "how_it_helped": "Deep-dived into the mandatory structure (student_metadata, full_log, top_5_prompts) to ensure no technical errors.",
+      "student_verification": "I compared the resulting JSON structure with the code example provided on page 5/6 of the PDF.",
       "confidence_level": 5
     }
   ],
   "top_5_prompts": [
     {
       "rank": 1,
-      "interaction_id": 3,
-      "prompt": "In the ECCV 2010 Fisher Kernel paper, how does the soft assignment of GMMs handle background clutter compared to standard Bag-of-Visual-Words (BoV), and what are its failure modes if the target object is severely occluded?",
-      "why_important": "This prompt directly addresses the 'failure modes' grading criterion. Understanding how background clutter and occlusion break the model is essential for the proctored exam."
+      "interaction_id": 14,
+      "prompt": "compare Multiple Kernel Learning Algorithms with Pegasos: Primal Estimated sub-GrAdient SOlver for SVM and tell me which is more feasible ",
+      "why_important": "This was the final analytical comparison that allowed me to decide between coding complexity and project relevance before choosing my paper."
     },
     {
       "rank": 2,
-      "interaction_id": 1,
-      "prompt": "Given the strict CPU-only constraint of my exam, what is the time complexity trade-off between increasing the number of GMM components (K) versus the dimensionality of the resulting Fisher Vector when training the linear SVM?",
-      "why_important": "Satisfies the 'trade-offs' and 'feasibility' criteria. It proves I actively verified that the methodology won't blow up the memory limits on my personal laptop."
+      "interaction_id": 3,
+      "prompt": "find another ones , make sure it uses svm, gmm or time series together and it fulfills the needs specified in pdf",
+      "why_important": "Directly led to finding the specific ECCV paper that fulfilled the syllabus requirement for multi-algorithm variants."
     },
     {
       "rank": 3,
-      "interaction_id": 2,
-      "prompt": "Why does the Fisher Vector inherently pair so well with a linear SVM instead of a complex RBF kernel SVM? Explain the mathematical intuition behind the gradient space mapping.",
-      "why_important": "Addresses the 'why' criterion by exploring the deep mathematical synergy between the generative GMM step and the discriminative linear SVM step."
+      "interaction_id": 5,
+      "prompt": "does option a satisfy all criteria mentioned in pdf and it's dataset is easily available and we can perform on toy dataset and reproduce and understand in 2 days",
+      "why_important": "Evaluated the feasibility of the chosen paper against the strict CPU and laptop-only rules of the examination."
     },
     {
       "rank": 4,
-      "interaction_id": 4,
-      "prompt": "What underlying statistical assumptions does the Gaussian Mixture Model make about the distribution of local image features (like SIFT or HOG), and when would these assumptions mathematically break down on a simplified toy dataset?",
-      "why_important": "Tackles the 'when' criterion. It forced me to think about edge cases and the theoretical limits of the EM algorithm if my toy dataset lacks diversity."
+      "interaction_id": 19,
+      "prompt": "is this paper satisfy this points also : • Licensed or restricted datasets • Missing hyperparameter or experimental details...",
+      "why_important": "Served as the final 'Red Flag' filter to ensure the paper would not lead to disqualification for using proprietary or restricted data."
     },
     {
       "rank": 5,
-      "interaction_id": 5,
-      "prompt": "Does the computation of the Fisher Vector gradients require backpropagation, or is it a closed-form algebraic calculation that easily runs on a basic CPU using NumPy?",
-      "why_important": "Crucial for final feasibility confirmation. It guaranteed that I could implement this entirely with classical libraries like scikit-learn without secretly relying on modern deep learning frameworks."
+      "interaction_id": 1,
+      "prompt": "understand this pdf in depth and understand each context carefully because in future it will be very useful for doing it",
+      "why_important": "Established the initial set of constraints that I used to filter every paper idea I encountered throughout the process."
     }
   ],
   "student_declaration": {
