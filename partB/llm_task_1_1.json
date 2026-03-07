@@ -1,0 +1,128 @@
+{
+    "student_metadata": {
+        "name": "Prince Sahoo",
+        "roll_number": "230060",
+        "course": "Advanced Machine Learning",
+        "exam": "Mid-Semester Examination",
+        "part": "Part B",
+        "task": "Task 1.1 — Core Contribution / Architecture",
+        "submission_date": "2026-03-12"
+    },
+    "llm_tools_used": [
+        {
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "provider": "Google"
+        }
+    ],
+    "full_llm_interaction_log": [
+        {
+            "interaction_id": 1,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.1",
+            "purpose": "Understanding the overall pipeline of the Improved Fisher Kernel method.",
+            "prompt": "Read the paper 'Improving the Fisher Kernel for Large-Scale Image Classification' (ECCV 2010) and help me understand the full pipeline from input image to classification output, step by step.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Helped me identify the 8 main steps of the pipeline: SIFT extraction, PCA, GMM training, Fisher Vector computation, power normalization, L2 normalization, spatial pyramids, and linear SVM classification.",
+            "student_verification": "I cross-checked each step against Sections 2, 3, and 4.1 of the paper to ensure the ordering and descriptions were accurate.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 2,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.1",
+            "purpose": "Clarifying the mathematical derivation of the Fisher Vector (Equations 7 and 8).",
+            "prompt": "Explain the Fisher Vector computation in Equations 7 and 8 of the paper — what do the mean gradient and variance gradient capture, and why is the gradient with respect to the weights dropped?",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Clarified that the mean gradient captures how descriptors shift from each Gaussian's center, the variance gradient captures spread differences, and the weight gradient is dropped because it adds little discriminative information.",
+            "student_verification": "I re-read Section 2 and verified that the paper explicitly states the weight gradient 'brings little additional information'. I also verified the dimensionality claim (2KD) by working through K=256, D=64 → 32,768.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 3,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.1",
+            "purpose": "Understanding why power normalization is the most impactful improvement.",
+            "prompt": "Why does power normalization give the biggest accuracy boost (+6.3% AP) compared to L2 normalization (+3.9%) and spatial pyramids (+2.4%)? What's the intuition behind the sparsity problem?",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Explained that with K=256 Gaussians, most descriptors only get assigned to a few Gaussians significantly (gamma_t(i) ≈ 0 for most i), making the Fisher Vector very sparse. Dot-products on sparse vectors are poor similarity measures. Power normalization 'unsparsifies' the distribution.",
+            "student_verification": "I looked at Figure 1 in the paper which visually shows the distribution becoming more peaked at zero as K grows (16→64→256 Gaussians), and how alpha=0.5 spreads it back out in Figure 1(d). I also confirmed the AP numbers from Table 1.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 4,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.1",
+            "purpose": "Understanding the L2 normalization derivation and its connection to background removal.",
+            "prompt": "Explain the derivation in Section 3.1 — how does L2 normalization cancel out the background proportion omega? Walk me through Equations 9 to 13.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Explained the decomposition p(x) = ω·q(x) + (1-ω)·u_λ(x) and how the background gradient vanishes because the GMM was ML-estimated. So the Fisher Vector ≈ ω × (image-specific signal), and L2 normalization removes the ω dependence.",
+            "student_verification": "I traced through Equations 10→11→12→13 myself. Equation 12 makes sense because ML estimation means the gradient at the optimum is approximately zero. I also noted the footnote that any Lp norm would work but L2 is chosen for dot-product compatibility.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 5,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.1",
+            "purpose": "Writing the final summary sentence.",
+            "prompt": "Help me write a single sentence summarizing what problem this paper solves and what the authors claim makes their approach better, for the final requirement of Task 1.1.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Gave me a starting point which I then rewrote in my own words to be more specific about the normalizations and the quantitative result (58.3% AP).",
+            "student_verification": "I verified the 58.3% AP figure from Table 1 (SIFT only, all three improvements applied) and ensured the sentence accurately reflects the paper's claim.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        }
+    ],
+    "top_5_prompts": [
+        {
+            "rank": 1,
+            "interaction_id": 2,
+            "prompt": "Explain the Fisher Vector computation in Equations 7 and 8 of the paper — what do the mean gradient and variance gradient capture, and why is the gradient with respect to the weights dropped?",
+            "why_important": "This was the most technical part of the pipeline — understanding the actual math behind the Fisher Vector representation was essential for writing a specific (not generic) explanation."
+        },
+        {
+            "rank": 2,
+            "interaction_id": 3,
+            "prompt": "Why does power normalization give the biggest accuracy boost (+6.3% AP) compared to L2 normalization (+3.9%) and spatial pyramids (+2.4%)? What's the intuition behind the sparsity problem?",
+            "why_important": "Power normalization is the paper's single most impactful contribution. Understanding the sparsity intuition was critical for explaining Step 5 convincingly."
+        },
+        {
+            "rank": 3,
+            "interaction_id": 4,
+            "prompt": "Explain the derivation in Section 3.1 — how does L2 normalization cancel out the background proportion omega? Walk me through Equations 9 to 13.",
+            "why_important": "The L2 normalization derivation is the most theoretically dense part of the paper. I needed to understand the omega decomposition to explain Step 6 properly."
+        },
+        {
+            "rank": 4,
+            "interaction_id": 1,
+            "prompt": "Read the paper 'Improving the Fisher Kernel for Large-Scale Image Classification' (ECCV 2010) and help me understand the full pipeline from input image to classification output, step by step.",
+            "why_important": "This initial read-through established the overall architecture, letting me identify all 8 steps and their ordering before diving into details."
+        },
+        {
+            "rank": 5,
+            "interaction_id": 5,
+            "prompt": "Help me write a single sentence summarizing what problem this paper solves and what the authors claim makes their approach better, for the final requirement of Task 1.1.",
+            "why_important": "The final summary sentence needs to be precise and complete — I used the LLM's draft as a starting point but rewrote it to match the specific quantitative claims."
+        }
+    ],
+    "student_declaration": {
+        "statement": "I declare that this JSON file contains a complete and honest record of my LLM usage for Task 1.1. All explanations were written in my own words after verifying the LLM's responses against the paper.",
+        "understanding_acknowledged": true,
+        "signature": "Prince Sahoo",
+        "date": "2026-03-08"
+    }
+}

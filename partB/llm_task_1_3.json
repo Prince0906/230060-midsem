@@ -1,0 +1,108 @@
+{
+    "student_metadata": {
+        "name": "Prince Sahoo",
+        "roll_number": "230060",
+        "course": "Advanced Machine Learning",
+        "exam": "Mid-Semester Examination",
+        "part": "Part B",
+        "task": "Task 1.3 — What the Paper Claims to Improve",
+        "submission_date": "2026-03-12"
+    },
+    "llm_tools_used": [
+        {
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "provider": "Google"
+        }
+    ],
+    "full_llm_interaction_log": [
+        {
+            "interaction_id": 1,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.3",
+            "purpose": "Identifying the main baseline the paper compares against.",
+            "prompt": "What is the main baseline or prior method that the Improved Fisher Kernel paper compares against? Is it the standard Fisher Kernel from [22] or the BOV + non-linear SVM approach?",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Clarified that the direct baseline is the standard Fisher Kernel of Perronnin & Dance [22] (CVPR 2007) with 47.9% AP, while the broader competitive context is BOV + non-linear SVMs.",
+            "student_verification": "I checked Table 1 (first row: 47.9% with no modifications = baseline FK [22]) and Table 2 (which compares against multiple systems including BOV-based ones). The paper's title itself says 'Improving the Fisher Kernel', confirming [22] is the primary baseline.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 2,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.3",
+            "purpose": "Understanding the specific limitations of the baseline Fisher Kernel.",
+            "prompt": "What specific limitations does the paper identify in the standard Fisher Kernel of [22]? Why did it perform 'no better than the BOV' despite being theoretically richer?",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Identified two core problems: (1) sparsity of Fisher Vectors at large K making dot-products ineffective, and (2) sensitivity to background proportion omega affecting the vector magnitude.",
+            "student_verification": "I verified the sparsity claim by reading Section 3.2 and looking at Figure 1 (the histograms clearly show the peaking effect). For the omega issue, I traced through the derivation in Section 3.1, Equations 10-13.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 3,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.3",
+            "purpose": "Brainstorming a scenario where the IFK would not outperform the baseline.",
+            "prompt": "Can you think of a realistic scenario where the Improved Fisher Kernel with linear SVM would NOT outperform a standard BOV + non-linear SVM? I need this for the 4-mark sub-question.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Suggested several scenarios. I chose the small-dataset scenario because I could build a multi-point argument: scalability advantage vanishes, L2 normalization may hurt when omega≈1, and I could cite Table 2 as supporting evidence.",
+            "student_verification": "I verified my reasoning by checking: (1) the paper's scalability argument is in Section 1, paragraph 2 about O(N^2)-O(N^3), (2) Section 3.1 acknowledges the L2 norm may be discriminative, (3) Table 2 shows [29] at 63.5% beats IFK at 58.3%.",
+            "code_used_verbatim": false,
+            "confidence_level": 4
+        },
+        {
+            "interaction_id": 4,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.3",
+            "purpose": "Refining the failure condition argument to ensure it's well-reasoned.",
+            "prompt": "Review my failure condition argument: 'IFK loses on small-scale datasets with tightly cropped objects.' Is this specific enough, and does my reasoning connect back to the paper's own evidence?",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Suggested adding the point about power normalization being calibrated for high sparsity which may not hold with few images. I incorporated this as my 3rd supporting argument.",
+            "student_verification": "I double-checked that all 4 sub-arguments in my response are grounded in specific paper sections (Section 1 for scalability, Section 3.1 for L2 trade-off, Section 3.2 for alpha calibration, Table 2 for evidence).",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        }
+    ],
+    "top_5_prompts": [
+        {
+            "rank": 1,
+            "interaction_id": 3,
+            "prompt": "Can you think of a realistic scenario where the Improved Fisher Kernel with linear SVM would NOT outperform a standard BOV + non-linear SVM? I need this for the 4-mark sub-question.",
+            "why_important": "The failure condition is worth 4 out of 9 marks for Task 1.3 and requires original reasoned inference. The LLM helped brainstorm scenarios, but I constructed the multi-point argument myself."
+        },
+        {
+            "rank": 2,
+            "interaction_id": 2,
+            "prompt": "What specific limitations does the paper identify in the standard Fisher Kernel of [22]? Why did it perform 'no better than the BOV' despite being theoretically richer?",
+            "why_important": "Understanding the baseline's limitations is the foundation for explaining the paper's contribution. This prompt helped me identify the two specific problems (sparsity and omega sensitivity) rather than giving a vague answer."
+        },
+        {
+            "rank": 3,
+            "interaction_id": 1,
+            "prompt": "What is the main baseline or prior method that the Improved Fisher Kernel paper compares against? Is it the standard Fisher Kernel from [22] or the BOV + non-linear SVM approach?",
+            "why_important": "Correctly identifying the baseline is worth 2 marks and the rest of the answer builds on it. I needed to distinguish between the direct baseline ([22]) and the broader competitive landscape (BOV + non-linear SVM)."
+        },
+        {
+            "rank": 4,
+            "interaction_id": 4,
+            "prompt": "Review my failure condition argument: 'IFK loses on small-scale datasets with tightly cropped objects.' Is this specific enough, and does my reasoning connect back to the paper's own evidence?",
+            "why_important": "Used the LLM as a sounding board to ensure my failure condition argument had enough supporting evidence from the paper itself."
+        }
+    ],
+    "student_declaration": {
+        "statement": "I declare that this JSON file contains a complete and honest record of my LLM usage for Task 1.3. The failure condition scenario and its reasoning are my own inference, verified against the paper.",
+        "understanding_acknowledged": true,
+        "signature": "Prince Sahoo",
+        "date": "2026-03-08"
+    }
+}

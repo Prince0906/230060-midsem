@@ -1,0 +1,108 @@
+{
+    "student_metadata": {
+        "name": "Prince Sahoo",
+        "roll_number": "230060",
+        "course": "Advanced Machine Learning",
+        "exam": "Mid-Semester Examination",
+        "part": "Part B",
+        "task": "Task 1.2 — Key Assumptions",
+        "submission_date": "2026-03-12"
+    },
+    "llm_tools_used": [
+        {
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "provider": "Google"
+        }
+    ],
+    "full_llm_interaction_log": [
+        {
+            "interaction_id": 1,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.2",
+            "purpose": "Identifying assumptions embedded in the Fisher Vector method.",
+            "prompt": "What are the key assumptions the Improved Fisher Kernel method depends on? I need assumptions specific to this paper's architecture, not generic ML assumptions like 'data is i.i.d.'.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Suggested several candidate assumptions including descriptor independence, diagonal covariance, and the background decomposition. I selected 4 that were most clearly traceable to specific paper sections.",
+            "student_verification": "I went through Sections 2 and 3.1 of the paper line by line to confirm each assumption is explicitly or implicitly stated. For example, Section 2 literally says 'We assume that the x_t's are generated independently'.",
+            "code_used_verbatim": false,
+            "confidence_level": 4
+        },
+        {
+            "interaction_id": 2,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.2",
+            "purpose": "Understanding why the diagonal covariance assumption matters for the Fisher Vector computation.",
+            "prompt": "Why does the Fisher Kernel paper assume diagonal covariance matrices in the GMM? What would change if they used full covariance?",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Explained that diagonal covariance makes the Fisher Information Matrix diagonal, simplifying Equations 7-8 to per-dimension operations. Full covariance would give O(D^2) parameters per Gaussian instead of O(D), and the Fisher Vector dimensionality would increase from 2KD to K·D(D+1)/2.",
+            "student_verification": "I checked Equations 7 and 8 and confirmed the division by sigma_i is element-wise (term-by-term) — which only works with diagonal covariance. I also noted the PCA step partially justifies this assumption by decorrelating features beforehand.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 3,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.2",
+            "purpose": "Constructing a realistic violation scenario for the background decomposition assumption.",
+            "prompt": "For Assumption 3 (the background/foreground decomposition in Section 3.1), what would be a good violation scenario where p(x) = omega*q(x) + (1-omega)*u_lambda(x) doesn't hold?",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Suggested scenarios like medical images and satellite imagery where there's no clear object-vs-background distinction. I picked satellite imagery as my example and added the reasoning about why the GMM-trained-on-natural-images wouldn't model such domains.",
+            "student_verification": "I re-read Equation 12 which requires that the gradient at the ML estimate is approximately zero — this only holds if the background descriptors genuinely follow u_lambda. For completely out-of-domain images, this would fail.",
+            "code_used_verbatim": false,
+            "confidence_level": 4
+        },
+        {
+            "interaction_id": 4,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 1.2",
+            "purpose": "Verifying that the fixed alpha=0.5 counts as a paper-specific assumption rather than a generic one.",
+            "prompt": "Is the fixed alpha=0.5 for power normalization a valid paper-specific assumption for Task 1.2, or is it too generic? The exam says assumptions must be 'embedded in the proposed contribution'.",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Confirmed that alpha=0.5 is specifically part of this paper's proposed normalization method (Equation 15), not a general ML assumption. The paper explicitly fixes this value for K=256 across all datasets.",
+            "student_verification": "I checked Section 3.2 which states the value is 'fixed throughout our experiments' and that alpha 'may vary with the number K of Gaussians' — confirming this is a design choice specific to this paper's contribution.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        }
+    ],
+    "top_5_prompts": [
+        {
+            "rank": 1,
+            "interaction_id": 1,
+            "prompt": "What are the key assumptions the Improved Fisher Kernel method depends on? I need assumptions specific to this paper's architecture, not generic ML assumptions like 'data is i.i.d.'.",
+            "why_important": "This was the foundational prompt that generated the candidate list of assumptions. I then filtered and refined them based on traceability to the paper."
+        },
+        {
+            "rank": 2,
+            "interaction_id": 2,
+            "prompt": "Why does the Fisher Kernel paper assume diagonal covariance matrices in the GMM? What would change if they used full covariance?",
+            "why_important": "Understanding the mathematical consequences of diagonal vs. full covariance was essential for explaining why the method needs this assumption and writing a convincing violation scenario."
+        },
+        {
+            "rank": 3,
+            "interaction_id": 3,
+            "prompt": "For Assumption 3 (the background/foreground decomposition in Section 3.1), what would be a good violation scenario where p(x) = omega*q(x) + (1-omega)*u_lambda(x) doesn't hold?",
+            "why_important": "The violation scenario needs to be specific and realistic. The LLM helped brainstorm domains where the background decomposition fails, which I then reasoned through independently."
+        },
+        {
+            "rank": 4,
+            "interaction_id": 4,
+            "prompt": "Is the fixed alpha=0.5 for power normalization a valid paper-specific assumption for Task 1.2, or is it too generic?",
+            "why_important": "I needed to confirm my 4th assumption wasn't too generic — the exam explicitly penalizes general ML assumptions. This interaction validated that alpha=0.5 is paper-specific."
+        }
+    ],
+    "student_declaration": {
+        "statement": "I declare that this JSON file contains a complete and honest record of my LLM usage for Task 1.2. All assumptions were selected and verified by me against the paper text.",
+        "understanding_acknowledged": true,
+        "signature": "Prince Sahoo",
+        "date": "2026-03-08"
+    }
+}
