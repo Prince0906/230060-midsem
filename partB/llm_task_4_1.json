@@ -1,0 +1,89 @@
+{
+    "student_metadata": {
+        "name": "Prince Sahoo",
+        "roll_number": "230060",
+        "course": "Advanced Machine Learning",
+        "exam": "Mid-Semester Examination",
+        "part": "Part B",
+        "task": "Task 4.1 — Report",
+        "submission_date": "2026-03-12"
+    },
+    "llm_tools_used": [
+        {
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "provider": "Google"
+        }
+    ],
+    "full_llm_interaction_log": [
+        {
+            "interaction_id": 1,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 4.1",
+            "purpose": "Structuring the report across the 5 required sections.",
+            "prompt": "Help me outline a 4-page report covering: paper summary, reproduction results, ablation findings, failure mode, and honest reflection. What should each section emphasize?",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Suggested keeping each section to about 2/3 page, leading with the key finding, and connecting sections to each other. I followed this structure.",
+            "student_verification": "I verified the final report covers all 5 required sections and stays within 4 pages.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 2,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 4.1",
+            "purpose": "Writing the honest reflection section.",
+            "prompt": "Help me write an honest reflection about what I could not implement, what surprised me, and what I'd revisit. My key finding was that L2 norm mattered more than power norm on my dataset.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Helped organize the reflection into three parts (could not implement, surprised by, would revisit). I wrote all the specific content myself based on my actual experience.",
+            "student_verification": "The reflection accurately describes my real experience: simplified descriptors, no spatial pyramids, and the surprising L2 > power norm finding.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 3,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 4.1",
+            "purpose": "Generating the PDF using Python (no LaTeX available).",
+            "prompt": "Generate a well-formatted PDF report using Python's fpdf2 library with 10pt font, 1-inch margins, and proper section headers.",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Provided the fpdf2 code structure for creating a formatted PDF with headers, tables, and multi-line text blocks.",
+            "student_verification": "I verified the output PDF has correct formatting (>= 10pt font, 1-inch margins, <= 4 pages).",
+            "code_used_verbatim": true,
+            "student_modification": "Replaced all placeholder content with my actual report text. Adjusted font sizes and spacing to fit within 4 pages. Added the result comparison table.",
+            "confidence_level": 5
+        }
+    ],
+    "top_5_prompts": [
+        {
+            "rank": 1,
+            "interaction_id": 2,
+            "prompt": "Help me write an honest reflection about what I could not implement, what surprised me, and what I'd revisit.",
+            "why_important": "The reflection section is worth 3 marks and must be an honest account of my actual experience, not a generic statement."
+        },
+        {
+            "rank": 2,
+            "interaction_id": 1,
+            "prompt": "Help me outline a 4-page report covering the 5 required sections.",
+            "why_important": "Getting the structure right ensures I cover all graded components within the page limit."
+        },
+        {
+            "rank": 3,
+            "interaction_id": 3,
+            "prompt": "Generate a well-formatted PDF report using Python's fpdf2 library.",
+            "why_important": "Without LaTeX or pandoc, I needed an alternative way to create a properly formatted PDF."
+        }
+    ],
+    "student_declaration": {
+        "statement": "I declare that this JSON file contains a complete and honest record of my LLM usage for Task 4.1. The honest reflection is based on my actual experience.",
+        "understanding_acknowledged": true,
+        "signature": "Prince Sahoo",
+        "date": "2026-03-08"
+    }
+}

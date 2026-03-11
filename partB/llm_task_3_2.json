@@ -1,0 +1,109 @@
+{
+    "student_metadata": {
+        "name": "Prince Sahoo",
+        "roll_number": "230060",
+        "course": "Advanced Machine Learning",
+        "exam": "Mid-Semester Examination",
+        "part": "Part B",
+        "task": "Task 3.2 — Failure Mode",
+        "submission_date": "2026-03-12"
+    },
+    "llm_tools_used": [
+        {
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "provider": "Google"
+        }
+    ],
+    "full_llm_interaction_log": [
+        {
+            "interaction_id": 1,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 3.2",
+            "purpose": "Brainstorming failure mode scenarios connected to Task 1.2 assumptions.",
+            "prompt": "What failure scenarios for the Improved Fisher Kernel would connect back to the assumptions I identified in Task 1.2? I need something I can demonstrate empirically on Olivetti Faces.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Suggested several options: highly correlated patches (Assumption 1), out-of-distribution backgrounds (Assumption 3), very few descriptors (Assumption 4). I chose out-of-distribution occlusion because it connects to Assumption 3 and is easy to demonstrate.",
+            "student_verification": "I traced the connection: Assumption 3 says background follows u_lambda, random noise violates this, L2 normalization theory (Eq. 12) breaks down.",
+            "code_used_verbatim": false,
+            "confidence_level": 4
+        },
+        {
+            "interaction_id": 2,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 3.2",
+            "purpose": "Implementing the occlusion-based patch replacement.",
+            "prompt": "How do I replace a fraction of an image's patches with random noise in numpy? I want to simulate heavy occlusion.",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Showed how to use np.random.choice for index selection and np.random.rand for noise generation.",
+            "student_verification": "I verified that replaced patches have uniform random values in [0,1] (same range as pixel values), and that the occlusion ratio is correct.",
+            "code_used_verbatim": true,
+            "student_modification": "Added separate random seed (RANDOM_SEED + 100) for occlusion to keep it independent of the training pipeline's randomness.",
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 3,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 3.2",
+            "purpose": "Writing the 5-7 sentence failure explanation connecting to Assumption 3.",
+            "prompt": "Help me write a paragraph explaining why the IFK fails under random occlusion, connecting to the background decomposition assumption (Eq. 10-13).",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Provided a draft explanation which I expanded to trace the exact chain: noise ≠ u_lambda → gradient doesn't vanish → FV contaminated → power norm amplifies → L2 norm dilutes signal.",
+            "student_verification": "I re-read Section 3.1 to confirm: Equation 12 requires the background to follow u_lambda for the gradient to vanish. Random noise violates this prerequisite.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 4,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 3.2",
+            "purpose": "Suggesting a concrete modification to address the failure.",
+            "prompt": "What concrete modification to the Fisher Vector pipeline could address the out-of-distribution occlusion failure? I need one sentence.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Suggested descriptor rejection based on GMM log-likelihood thresholding. I refined this to specify 'reject patches below 2 standard deviations from the training mean log-likelihood'.",
+            "student_verification": "This makes sense: the GMM can score each descriptor's likelihood, and out-of-distribution noise would get very low scores.",
+            "code_used_verbatim": false,
+            "confidence_level": 4
+        }
+    ],
+    "top_5_prompts": [
+        {
+            "rank": 1,
+            "interaction_id": 1,
+            "prompt": "What failure scenarios for the Improved Fisher Kernel would connect back to the assumptions I identified in Task 1.2?",
+            "why_important": "The exam says the best failures 'close a loop' with Task 1.2. This prompt helped identify which assumption to violate empirically."
+        },
+        {
+            "rank": 2,
+            "interaction_id": 3,
+            "prompt": "Help me write a paragraph explaining why the IFK fails under random occlusion, connecting to the background decomposition assumption.",
+            "why_important": "The failure explanation is worth 7 out of 15 marks — connecting it to the specific equation that breaks (Eq. 12) is critical."
+        },
+        {
+            "rank": 3,
+            "interaction_id": 4,
+            "prompt": "What concrete modification to the Fisher Vector pipeline could address the out-of-distribution occlusion failure?",
+            "why_important": "The suggested modification is worth 3 marks. It needs to be specific and feasible."
+        },
+        {
+            "rank": 4,
+            "interaction_id": 2,
+            "prompt": "How do I replace a fraction of an image's patches with random noise in numpy?",
+            "why_important": "The implementation of the failure demonstration needs to be clean and reproducible."
+        }
+    ],
+    "student_declaration": {
+        "statement": "I declare that this JSON file contains a complete and honest record of my LLM usage for Task 3.2. The choice of failure mode and its connection to Assumption 3 was my own decision.",
+        "understanding_acknowledged": true,
+        "signature": "Prince Sahoo",
+        "date": "2026-03-08"
+    }
+}

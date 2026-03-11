@@ -1,0 +1,89 @@
+{
+    "student_metadata": {
+        "name": "Prince Sahoo",
+        "roll_number": "230060",
+        "course": "Advanced Machine Learning",
+        "exam": "Mid-Semester Examination",
+        "part": "Part B",
+        "task": "Task 2.3 — Result, Comparison and Reproducibility Checklist",
+        "submission_date": "2026-03-12"
+    },
+    "llm_tools_used": [
+        {
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "provider": "Google"
+        }
+    ],
+    "full_llm_interaction_log": [
+        {
+            "interaction_id": 1,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 2.3",
+            "purpose": "Writing the 3-5 sentence explanation for why our numbers differ from the paper.",
+            "prompt": "Help me explain why our mAP on Olivetti Faces differs from the paper's AP on PASCAL VOC 2007. Our absolute values are higher but relative improvements are smaller.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Helped structure the explanation around three factors: dataset simplicity, lower K producing less sparsity, and simpler descriptors.",
+            "student_verification": "I verified each point: (a) Olivetti is indeed simpler (controlled setting), (b) K=16 vs K=256 reduces sparsity, (c) raw patches vs SIFT captures less structure.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 2,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 2.3",
+            "purpose": "Creating the ablation bar chart visualization.",
+            "prompt": "Create a matplotlib bar chart comparing our mAP values with the paper's AP values across all 4 normalization configurations, with value labels on bars.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Provided matplotlib code for grouped bar chart. I modified colors, labels, and layout.",
+            "student_verification": "Verified the chart accurately represents the numerical results from Task 2.2.",
+            "code_used_verbatim": true,
+            "student_modification": "Changed color scheme to use seaborn palette, adjusted bar width, added value annotations, and set proper axis limits.",
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 3,
+            "date": "2026-03-08",
+            "tool_name": "Gemini",
+            "model": "Gemini",
+            "task_tag": "Task 2.3",
+            "purpose": "Formatting the reproducibility checklist.",
+            "prompt": "What are the exact 5 items needed for the reproducibility checklist in Task 2.3?",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Listed the 5 items from the exam instructions. I then verified each one against our actual implementation.",
+            "student_verification": "Confirmed: random seeds set, requirements.txt has versions, notebooks run top-to-bottom, dataset auto-downloads, hyperparameters in one place.",
+            "code_used_verbatim": false,
+            "confidence_level": 5
+        }
+    ],
+    "top_5_prompts": [
+        {
+            "rank": 1,
+            "interaction_id": 1,
+            "prompt": "Help me explain why our mAP on Olivetti Faces differs from the paper's AP on PASCAL VOC 2007.",
+            "why_important": "The honest commentary on the performance gap is a graded requirement — the reasoning must be accurate and specific to our setup."
+        },
+        {
+            "rank": 2,
+            "interaction_id": 2,
+            "prompt": "Create a matplotlib bar chart comparing our mAP values with the paper's AP values.",
+            "why_important": "The visualization is a required deliverable that must be saved to partB/results/."
+        },
+        {
+            "rank": 3,
+            "interaction_id": 3,
+            "prompt": "What are the exact 5 items needed for the reproducibility checklist in Task 2.3?",
+            "why_important": "The checklist is a graded component — missing any item would cost marks."
+        }
+    ],
+    "student_declaration": {
+        "statement": "I declare that this JSON file contains a complete and honest record of my LLM usage for Task 2.3.",
+        "understanding_acknowledged": true,
+        "signature": "Prince Sahoo",
+        "date": "2026-03-08"
+    }
+}
